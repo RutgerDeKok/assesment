@@ -8,9 +8,10 @@ eureka:
 
 management:
    tracing:
+      enabled: true
       sampling:
          probability: 1.0
-
-spring:
-   zipkin:
-      baseUrl: http://localhost:9411/
+      propagation:
+         type: b3
+      zipkin:
+         tracing: endpoint= localhost:9411/zipkin/api/v2/spans
