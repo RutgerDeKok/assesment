@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `car_types` (
 	`model` VARCHAR(50) NOT NULL ,
 	`version` VARCHAR(50) NOT NULL ,
 	`numberOfDoors` TINYINT(2) NOT NULL ,
-	`Co2Emission` INT(10) NULL ,
+	`co2Emission` INT(10) NULL ,
 	`priceGross` DECIMAL(10, 2) NOT NULL ,
 	`priceNett` DECIMAL(10, 2) NOT NULL ,
 	PRIMARY KEY (`id`)

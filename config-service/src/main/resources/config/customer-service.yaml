@@ -24,8 +24,8 @@ spring:
    datasource:
       url: jdbc:mysql://localhost:3306/customer_db?autoReconnect=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8&charSet=UTF-8&serverTimezone=UTC
       driver-class-name: com.mysql.cj.jdbc.Driver
-      username: admin
-      password: wortel2!
+      username: spring
+      password: jpa!
       max-poolsize: 20
    jpa:
       properties:
