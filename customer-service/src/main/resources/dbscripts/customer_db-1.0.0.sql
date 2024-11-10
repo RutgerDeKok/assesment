@@ -1,12 +1,14 @@
 ###########################################################################
 #
-# Script om de template database te upgraden naar versie 1.0.0
+# Script for updating car_db template to version 1.0.0
 #
-# Wijzigingen:
-# - db_versions tabel toegevoegd
-# - customers tabel toegevoegd
+# Changes:
+# - customer database created
+# - db_versions added
+# - customers table added
 #
 ###########################################################################
+
 
 SET @version = '1.0.0'; -- Version number
 
