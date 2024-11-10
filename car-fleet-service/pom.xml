@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.rutgerk</groupId>
-	<artifactId>car-fleet-service</artifactId>
+	<artifactId>car-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>car-fleet-service</name>
+	<name>car-service</name>
 	<description>Service Registry for Car-lease Platform API</description>
 	<url />
 	<licenses>

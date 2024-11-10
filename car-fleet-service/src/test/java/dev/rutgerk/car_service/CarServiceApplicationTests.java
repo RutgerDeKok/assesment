@@ -1,10 +1,10 @@
-package dev.rutgerk.car_fleet_service;
+package dev.rutgerk.car_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CarFleetServiceApplicationTests {
+class CarServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
