@@ -7,6 +7,10 @@ eureka:
          defaultZone: http://localhost:8761/eureka/
 
 management:
+   endpoints:
+      web:
+         exposure:
+            include: '*'
    tracing:
       enabled: true
       sampling:
@@ -15,3 +19,25 @@ management:
          type: b3
       zipkin:
          tracing: endpoint= localhost:9411/zipkin/api/v2/spans
+
+spring:
+   datasource:
+      url: jdbc:mysql://localhost:3306/customer_db?autoReconnect=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8&charSet=UTF-8&serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: admin
+      password: wortel2!
+      max-poolsize: 20
+   jpa:
+      properties:
+         hibernate:
+            dialect: org.hibernate.dialect.MySQLDialect
+      hibernate:
+         ddl-auto: validate
+      show-sql: false
+
+customer_db:
+   datasource:
+      properties:
+         hibernate.dialect: org.hibernate.dialect.MySQLDialect
+         hibernate.show_sql: false
+         hibernate.id.new_generator_mappings: false

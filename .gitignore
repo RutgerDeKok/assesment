@@ -48,3 +48,5 @@ service-registry/.project
 service-registry/HELP.md
 
 service-registry/bin/
+
+customer-service/.factorypath
