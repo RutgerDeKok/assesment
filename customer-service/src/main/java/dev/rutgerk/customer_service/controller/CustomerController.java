@@ -10,7 +10,7 @@ import dev.rutgerk.customer_service.service.CustomerService;
 
 
 @RestController
-@RequestMapping("/api/customer")
+@RequestMapping("/customer")
 public class CustomerController {
 
 

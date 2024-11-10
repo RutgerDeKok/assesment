@@ -12,7 +12,7 @@ import dev.rutgerk.customer_service.service.LeaseContractService;
 
 
 @RestController
-@RequestMapping("/api/lease-contract")
+@RequestMapping("/lease-contract")
 public class LeaseContractController {
 
   private static final Logger LOG = LoggerFactory.getLogger(LeaseContractController.class);
