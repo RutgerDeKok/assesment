@@ -1,0 +1,31 @@
+server:
+   port: 8060
+
+eureka:
+   client:
+      serviceUrl:
+         defaultZone: http://localhost:8761/eureka/
+
+management:
+   tracing:
+      enabled: true
+      sampling:
+         probability: 1.0
+      propagation:
+         type: b3
+      zipkin:
+         tracing: endpoint= localhost:9411/zipkin/api/v2/spans
+
+spring:
+   cloud:
+      gateway:
+         mvc:
+            routes:
+            -  id: customer-service
+               uri: lb://customer-service
+               predicates:
+               - Path=/customer/** , /lease-contract/**
+            -  id: car-service
+               uri: lb://car-service
+               predicates:
+               - Path=/car-type/**
