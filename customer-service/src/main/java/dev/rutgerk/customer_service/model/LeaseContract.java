@@ -18,7 +18,7 @@ public class LeaseContract {
   private Long id;
   private Long customerId;
   private Long carTypeId;
-  private int mileAgePerYear;
+  private int mileagePerYear;
   private int durationMonths;
   private BigDecimal interestRate;
   private LocalDate startDate;
@@ -48,12 +48,12 @@ public class LeaseContract {
     this.carTypeId = carTypeId;
   }
 
-  public int getMileAgePerYear() {
-    return mileAgePerYear;
+  public int getMileagePerYear() {
+    return mileagePerYear;
   }
 
-  public void setMileAgePerYear(int mileAgePerYear) {
-    this.mileAgePerYear = mileAgePerYear;
+  public void setMileagePerYear(int mileagePerYear) {
+    this.mileagePerYear = mileagePerYear;
   }
 
   public int getDurationMonths() {

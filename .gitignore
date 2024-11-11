@@ -104,3 +104,5 @@ authentication-service/target/classes/META-INF/MANIFEST.MF
 authentication-service/target/classes/META-INF/maven/dev.rutgerk/authentication-service/pom.xml
 
 authentication-service/target/test-classes/dev/rutgerk/authentication_service/AuthenticationServiceApplicationTests.class
+
+*.class
