@@ -3,17 +3,15 @@ package dev.rutgerk.customer_service.service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import dev.rutgerk.customer_service.dto.LeaseRateRequestDto;
 import dev.rutgerk.customer_service.model.LeaseContract;
 import dev.rutgerk.customer_service.repository.LeaseContractRepository;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class LeaseContractService {
-
-  private static final Logger LOG = LoggerFactory.getLogger(LeaseContractService.class);
 
   private static final int MONTH_PER_YEAR = 12;
   private static final BigDecimal ONE_HUNDRED = BigDecimal.valueOf(100L);
@@ -25,7 +23,7 @@ public class LeaseContractService {
   }
 
   public List<LeaseContract> findAll() {
-    LOG.info("fetching all lease contracts");
+    log.info("fetching all lease contracts");
     return repository.findAll();
   }
 

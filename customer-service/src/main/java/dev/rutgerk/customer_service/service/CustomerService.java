@@ -1,16 +1,14 @@
 package dev.rutgerk.customer_service.service;
 
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import dev.rutgerk.customer_service.model.Customer;
 import dev.rutgerk.customer_service.repository.CustomerRepository;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class CustomerService {
-
-  private static final Logger LOG = LoggerFactory.getLogger(CustomerService.class);
 
   private CustomerRepository repository;
 
@@ -19,7 +17,7 @@ public class CustomerService {
   }
 
   public List<Customer> findAll() {
-    LOG.info("fetching all customers");
+    log.info("fetching all customers");
     return repository.findAll();
   }
 

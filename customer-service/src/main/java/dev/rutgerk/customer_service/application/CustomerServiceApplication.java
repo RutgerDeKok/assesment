@@ -1,8 +1,6 @@
 package dev.rutgerk.customer_service.application;
 
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -13,13 +11,14 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @SpringBootApplication
 @EnableDiscoveryClient
 @ComponentScan(basePackages = {"dev.rutgerk", "dev.rutgerk.customer_service.model"})
 public class CustomerServiceApplication implements ApplicationListener<ContextRefreshedEvent> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(CustomerServiceApplication.class);
 
   public static void main(String[] args) {
     SpringApplication.run(CustomerServiceApplication.class, args);
@@ -34,7 +33,7 @@ public class CustomerServiceApplication implements ApplicationListener<ContextRe
     RequestMappingHandlerMapping requestMappingHandlerMapping = applicationContext
         .getBean("requestMappingHandlerMapping", RequestMappingHandlerMapping.class);
     Map<RequestMappingInfo, HandlerMethod> map = requestMappingHandlerMapping.getHandlerMethods();
-    map.forEach((key, value) -> LOG.info("{} {}", key, value));
+    map.forEach((key, value) -> log.info("{} {}", key, value));
   }
 
 }

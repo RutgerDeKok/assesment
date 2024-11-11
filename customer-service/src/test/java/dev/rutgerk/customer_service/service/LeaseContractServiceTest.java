@@ -31,9 +31,8 @@ class LeaseContractServiceTest {
 
   @Test
   void calculateLeaseRateTest_missingArgument() {
-    LeaseRateRequestDto leaseRateRequestDto =
-        new LeaseRateRequestDto.Builder().mileagePerYear(45000).durationMonths(60)
-            .interestRate(null).priceNett(new BigDecimal("63000.00")).build();
+    LeaseRateRequestDto leaseRateRequestDto = LeaseRateRequestDto.builder().mileagePerYear(45000)
+        .durationMonths(60).interestRate(null).priceNett(new BigDecimal("63000.00")).build();
 
     final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
         () -> leaseContractService.calculateLeaseRate(leaseRateRequestDto));
@@ -45,9 +44,8 @@ class LeaseContractServiceTest {
 
   @Test
   void calculateLeaseRateTest_missingArgument2() {
-    LeaseRateRequestDto leaseRateRequestDto =
-        new LeaseRateRequestDto.Builder().mileagePerYear(45000).durationMonths(60)
-            .interestRate(new BigDecimal("4.5")).priceNett(null).build();
+    LeaseRateRequestDto leaseRateRequestDto = LeaseRateRequestDto.builder().mileagePerYear(45000)
+        .durationMonths(60).interestRate(new BigDecimal("4.5")).priceNett(null).build();
 
     final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
         () -> leaseContractService.calculateLeaseRate(leaseRateRequestDto));
@@ -59,7 +57,7 @@ class LeaseContractServiceTest {
   @Test
   void calculateLeaseRateTest_allArgumentsPassed() {
     LeaseRateRequestDto leaseRateRequestDto =
-        new LeaseRateRequestDto.Builder().mileagePerYear(45000).durationMonths(60)
+        LeaseRateRequestDto.builder().mileagePerYear(45000).durationMonths(60)
             .interestRate(new BigDecimal("4.5")).priceNett(new BigDecimal("63000.00")).build();
 
     BigDecimal result = leaseContractService.calculateLeaseRate(leaseRateRequestDto);
