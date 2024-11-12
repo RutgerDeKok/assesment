@@ -19,13 +19,16 @@ management:
 spring:
    cloud:
       gateway:
-         mvc:
-            routes:
-            -  id: customer-service
-               uri: lb://customer-service
-               predicates:
-               - Path=/customer/** , /lease-contract/**
-            -  id: car-service
-               uri: lb://car-service
-               predicates:
-               - Path=/car-type/**
+         routes:
+         -  id: customer-service
+            uri: lb://customer-service
+            predicates:
+            - Path=/customer/** , /lease-contract/**
+         -  id: car-service
+            uri: lb://car-service
+            predicates:
+            - Path=/car-type/**
+         -  id: authentication-service
+            uri: lb://authentication-service
+            predicates:
+            - Path=/user/**

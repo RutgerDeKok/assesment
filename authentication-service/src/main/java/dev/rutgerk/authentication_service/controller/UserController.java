@@ -34,7 +34,7 @@ public class UserController {
     return ResponseEntity.ok(userService.signIn(credentialsDto));
   }
 
-  @PostMapping("/validateToken")
+  @GetMapping("/validateToken")
   public ResponseEntity<UserDto> signIn(@RequestParam String token) {
     log.info("Trying to validate token {}", token);
     return ResponseEntity.ok(userService.validateToken(token));

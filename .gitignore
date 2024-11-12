@@ -110,3 +110,7 @@ authentication-service/target/test-classes/dev/rutgerk/authentication_service/Au
 authentication-service/.factorypath
 
 authentication-service/target/classes/dbscripts/
+
+api-gateway/.factorypath
+
+car-fleet-service/.factorypath
