@@ -8,7 +8,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "lease_contracts")
 public class LeaseContract {
@@ -23,70 +25,5 @@ public class LeaseContract {
   private BigDecimal interestRate;
   private LocalDate startDate;
   private BigDecimal priceNett;
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Long getCustomerId() {
-    return customerId;
-  }
-
-  public void setCustomerId(Long customerId) {
-    this.customerId = customerId;
-  }
-
-  public Long getCarTypeId() {
-    return carTypeId;
-  }
-
-  public void setCarTypeId(Long carTypeId) {
-    this.carTypeId = carTypeId;
-  }
-
-  public int getMileagePerYear() {
-    return mileagePerYear;
-  }
-
-  public void setMileagePerYear(int mileagePerYear) {
-    this.mileagePerYear = mileagePerYear;
-  }
-
-  public int getDurationMonths() {
-    return durationMonths;
-  }
-
-  public void setDurationMonths(int durationMonths) {
-    this.durationMonths = durationMonths;
-  }
-
-  public BigDecimal getInterestRate() {
-    return interestRate;
-  }
-
-  public void setInterestRate(BigDecimal interestRate) {
-    this.interestRate = interestRate;
-  }
-
-  public LocalDate getStartDate() {
-    return startDate;
-  }
-
-  public void setStartDate(LocalDate startDate) {
-    this.startDate = startDate;
-  }
-
-  public BigDecimal getPriceNett() {
-    return priceNett;
-  }
-
-  public void setPriceNett(BigDecimal priceNett) {
-    this.priceNett = priceNett;
-  }
-
 
 }

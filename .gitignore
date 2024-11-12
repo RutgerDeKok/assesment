@@ -106,3 +106,7 @@ authentication-service/target/classes/META-INF/maven/dev.rutgerk/authentication-
 authentication-service/target/test-classes/dev/rutgerk/authentication_service/AuthenticationServiceApplicationTests.class
 
 *.class
+
+authentication-service/.factorypath
+
+authentication-service/target/classes/dbscripts/
