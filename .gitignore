@@ -114,3 +114,21 @@ authentication-service/target/classes/dbscripts/
 api-gateway/.factorypath
 
 car-fleet-service/.factorypath
+
+car-service/.classpath
+
+car-service/.factorypath
+
+car-service/.mvn/wrapper/
+
+car-service/.project
+
+car-service/.settings/
+
+car-service/mvnw
+
+car-service/mvnw.cmd
+
+car-service/target/classes/
+
+car-fleet-service/mvnw
