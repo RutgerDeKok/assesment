@@ -36,13 +36,14 @@ public class UserService {
 
 
   @Value("${jwt.token.secret}")
-  private final String secret;
+  private String secret;
 
 
   public List<UserDto> findAll() {
     log.info("fetching all users");
     return userConverter.convertAll(userRepository.findAll());
   }
+
 
 
   /**

@@ -29,7 +29,7 @@ public class CustomerService {
 
   public CustomerDto findByFirstAndLastName(String firstName, String lastName) {
     log.info("find customer by firstName: {} and lastName: {}", firstName, lastName);
-    Customer customer = repository.findFirstByFirstAndLastName(firstName, lastName)
+    Customer customer = repository.findByFirstNameAndLastName(firstName, lastName)
         .orElseThrow(NotFoundException::new);
     return converter.convert(customer);
   }
