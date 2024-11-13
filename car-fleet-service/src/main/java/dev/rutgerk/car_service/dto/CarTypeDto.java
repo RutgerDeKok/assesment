@@ -1,12 +1,10 @@
-package dev.rutgerk.car_service.model;
+package dev.rutgerk.car_service.dto;
 
 
 import java.math.BigDecimal;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,9 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "car_types")
-public class CarType {
+public class CarTypeDto {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
