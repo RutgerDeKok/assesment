@@ -1,30 +1,52 @@
 package dev.rutgerk.customer_service.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import dev.rutgerk.customer_service.dto.LeaseContractDto;
 import dev.rutgerk.customer_service.model.LeaseContract;
 import dev.rutgerk.customer_service.service.LeaseContractService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/lease-contract")
 public class LeaseContractController {
 
-  private LeaseContractService leaseContractService;
+  private final LeaseContractService leaseContractService;
 
-  public LeaseContractController(LeaseContractService leaseContractService) {
-    this.leaseContractService = leaseContractService;
-  }
 
 
   @GetMapping
-  List<LeaseContract> findAll() {
+  public List<LeaseContract> findAll() {
     log.info("fetching all lease contracts");
     return leaseContractService.findAll();
+  }
+
+  @PostMapping("/calculate-rate")
+  public BigDecimal calculateLeaseRate(@RequestBody LeaseContractDto request) {
+    log.info("calculating lease rate for customer {}", request.getCustomerId());
+    return leaseContractService.calculateLeaseRate(request);
+  }
+
+  @GetMapping("/customer/{customerId}")
+  public List<LeaseContract> findByCustomerId(@PathVariable long customerId) {
+    log.info("fetching lease contracts for customer {}", customerId);
+    return leaseContractService.findByCustomerId(customerId);
+  }
+
+  @PostMapping
+  public LeaseContractDto createLeaseContract(LeaseContractDto leaseContractDto) {
+    log.info("Creating new lease contract for customer {}", leaseContractDto.getCustomerId());
+    return leaseContractService.createLeaseContract(leaseContractDto);
   }
 
 }

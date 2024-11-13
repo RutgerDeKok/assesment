@@ -1,4 +1,4 @@
-package dev.rutgerk.customer_service.application.converter;
+package dev.rutgerk.customer_service.converter;
 
 import java.util.List;
 import org.springframework.stereotype.Component;

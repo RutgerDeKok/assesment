@@ -29,7 +29,7 @@ public class CarTypeController {
   }
 
   @GetMapping("/make")
-  public List<CarTypeDto> findByMake(@RequestParam(value = "make") String make) {
+  public List<CarTypeDto> findByMake(@RequestParam String make) {
     return carTypeService.findByMake(make);
   }
 
@@ -44,12 +44,12 @@ public class CarTypeController {
   }
 
   @GetMapping("/{id}")
-  public CarTypeDto getById(@PathVariable("id") Long id) {
+  public CarTypeDto getById(@PathVariable Long id) {
     return carTypeService.getById(id);
   }
 
   @DeleteMapping("/{id}")
-  public Long deleteById(@PathVariable("id") Long id) {
+  public Long deleteById(@PathVariable Long id) {
     return carTypeService.deleteById(id);
   }
 

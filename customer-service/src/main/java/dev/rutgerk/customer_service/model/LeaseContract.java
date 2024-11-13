@@ -8,10 +8,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "lease_contracts")
 public class LeaseContract {
 
@@ -25,5 +31,6 @@ public class LeaseContract {
   private BigDecimal interestRate;
   private LocalDate startDate;
   private BigDecimal priceNett;
+  private BigDecimal rate;
 
 }

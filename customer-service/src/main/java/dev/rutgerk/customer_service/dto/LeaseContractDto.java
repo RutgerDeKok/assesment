@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class LeaseRateRequestDto {
+public class LeaseContractDto {
 
   private Long id;
   private Long customerId;
@@ -19,6 +19,6 @@ public class LeaseRateRequestDto {
   private BigDecimal interestRate;
   private LocalDate startDate;
   private BigDecimal priceNett;
-
+  private BigDecimal rate;
 
 }

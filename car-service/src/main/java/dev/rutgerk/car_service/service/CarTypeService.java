@@ -31,7 +31,7 @@ public class CarTypeService {
   }
 
   /**
-   * Creates a new CartType from a CarTypeDto and persists it. returns persisted CarType id
+   * Creates a new CartType from a CarTypeDto and persists it. returns persisted carTypId
    * 
    * @param carTypeDto
    * @return id
@@ -47,7 +47,7 @@ public class CarTypeService {
   /**
    * Deletes the carType with the given id.
    * <p>
-   * If the entity is not found in the persistence store it is silently ignored.
+   * If the carType is not found in the persistence store it is silently ignored.
    *
    * @param id must not be {@literal null}.
    * @throws IllegalArgumentException in case the given {@literal id} is {@literal null}
@@ -77,7 +77,7 @@ public class CarTypeService {
    * Throws a NotFoundException when not found.
    * 
    * @param carTypeDto
-   * @return
+   * @return id
    */
   @Transactional
   public Long updateCartType(CarTypeDto carTypeDto) {
@@ -97,7 +97,7 @@ public class CarTypeService {
 
 
   private CarType findById(Long id) {
-    return repository.findById(id).orElseThrow(() -> new NotFoundException());
+    return repository.findById(id).orElseThrow(NotFoundException::new);
   }
 
 
