@@ -22,7 +22,6 @@ public class UserConverter {
   }
 
   public List<UserDto> convertAll(List<User> users) {
-
     return users.stream().map(user -> convert(user, null)).toList();
   }
 

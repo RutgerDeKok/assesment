@@ -44,7 +44,6 @@ public class UserController {
   public ResponseEntity<UserDto> signUp(@RequestBody UserCreationDto userCreationDto) {
     log.info("Creating new user {}", userCreationDto.getLogin());
     UserDto user = userService.signUp(userCreationDto);
-    // TODO send email
     return ResponseEntity.ok(user);
   }
 }

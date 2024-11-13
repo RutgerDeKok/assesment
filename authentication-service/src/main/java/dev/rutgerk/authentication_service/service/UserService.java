@@ -36,14 +36,27 @@ public class UserService {
 
 
   @Value("${jwt.token.secret}")
-  private String secret;
+  private final String secret;
 
-  private SecretKey getSigningKey() {
-    byte[] keyBytes = Decoders.BASE64.decode(this.secret);
-    return Keys.hmacShaKeyFor(keyBytes);
+
+  public List<UserDto> findAll() {
+    log.info("fetching all users");
+    return userConverter.convertAll(userRepository.findAll());
   }
 
 
+  /**
+   * This method signs a user in by passing a credentialsDto The credentials will be validated.
+   * 
+   * If the user can not be found an AppException is thrown with NOT_FOUND status
+   * 
+   * If validated a UserDto will be returned containing a web token
+   * 
+   * If validation fails an AppException is thrown with BAD_REQUEST status
+   * 
+   * @param credentialsDto
+   * @return UserDto
+   */
   public UserDto signIn(CredentialsDto credentialsDto) {
     var user = userRepository.findByLogin(credentialsDto.getLogin())
         .orElseThrow(() -> new AppException("User not found", HttpStatus.NOT_FOUND));
@@ -57,31 +70,15 @@ public class UserService {
     throw new AppException("Invalid password", HttpStatus.BAD_REQUEST);
   }
 
-  public UserDto validateToken(String token) {
-    String login = Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token)
-        .getPayload().getSubject();
-
-    Optional<User> userOptional = userRepository.findByLogin(login);
-
-    if (userOptional.isEmpty()) {
-      throw new AppException("User not found", HttpStatus.NOT_FOUND);
-    }
-
-    User user = userOptional.get();
-    return userConverter.convert(user, createToken(user.getLogin()));
-  }
-
-
-  private String createToken(String userLogin) {
-    Map<String, Object> claims = new HashMap<>();
-
-    return Jwts.builder().claims().add(claims).subject(userLogin).issuedAt(new Date())
-        .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 30L)).and()
-        .signWith(getSigningKey()).compact();
-  }
-
-
-
+  /**
+   * This method creates a new User by passing a userCreationDto. If there is an existing user with
+   * the same login an AppException is thrown with BAD_REQUEST status.
+   * 
+   * When the user is created and persisted succesfully a UserDto is returned
+   * 
+   * @param userCreationDto
+   * @return UserDto
+   */
   public UserDto signUp(UserCreationDto userCreationDto) {
     log.info("new user {} signing up", userCreationDto.getLogin());
     var userOptional = userRepository.findByLogin(userCreationDto.getLogin());
@@ -98,9 +95,43 @@ public class UserService {
   }
 
 
-  public List<UserDto> findAll() {
-    log.info("fetching all users");
-    List<User> users = userRepository.findAll();
-    return userConverter.convertAll(users);
+  /**
+   * A token is passed, and verified. If it passes verification a UserDTO will be returned based on
+   * the token data.
+   * 
+   * If the user can not be found an AppException is thrown with NOT_FOUND status
+   * 
+   * @param token
+   * @return UserDto
+   */
+  public UserDto validateToken(String token) {
+    String login = Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token)
+        .getPayload().getSubject();
+
+    Optional<User> userOptional = userRepository.findByLogin(login);
+
+    if (userOptional.isEmpty()) {
+      throw new AppException("User not found", HttpStatus.NOT_FOUND);
+    }
+
+    User user = userOptional.get();
+    return userConverter.convert(user, createToken(user.getLogin()));
   }
+
+
+  private SecretKey getSigningKey() {
+    byte[] keyBytes = Decoders.BASE64.decode(this.secret);
+    return Keys.hmacShaKeyFor(keyBytes);
+  }
+
+
+  private String createToken(String userLogin) {
+    Map<String, Object> claims = new HashMap<>();
+
+    return Jwts.builder().claims().add(claims).subject(userLogin).issuedAt(new Date())
+        .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 30L)).and()
+        .signWith(getSigningKey()).compact();
+  }
+
+
 }
