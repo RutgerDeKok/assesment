@@ -17,8 +17,8 @@ import reactor.core.publisher.Mono;
 @Component
 public class AuthenticationFilter implements GlobalFilter {
 
-  private RouterValidator validator;
-  private AuthenticationClient authenticationClient;
+  private final RouterValidator validator;
+  private final AuthenticationClient authenticationClient;
 
 
   public AuthenticationFilter(RouterValidator validator,
@@ -30,19 +30,16 @@ public class AuthenticationFilter implements GlobalFilter {
   @Override
   public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
     ServerHttpRequest request = exchange.getRequest();
-    System.out.println("request ontvangen: "); // TODO sysouts verwijderen
+
     if (validator.isSecured.test(request)) {
       if (authMissing(request)) {
         return onError(exchange, HttpStatus.UNAUTHORIZED);
       }
 
       final String token = request.getHeaders().getOrEmpty("Authorization").get(0);
-      System.out.println("token: " + token);
+
       ResponseEntity<UserDto> response = authenticationClient.signIn(token);
-      if (response.hasBody()) {
-        UserDto userDto = response.getBody();
-        System.out.println(userDto.getRole());
-      } else {
+      if (!response.hasBody()) {
         return onError(exchange, HttpStatus.UNAUTHORIZED);
       }
 
