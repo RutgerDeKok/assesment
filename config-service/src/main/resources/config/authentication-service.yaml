@@ -45,3 +45,15 @@ customer_db:
          hibernate.dialect: org.hibernate.dialect.MySQLDialect
          hibernate.show_sql: false
          hibernate.id.new_generator_mappings: false
+         
+springdoc:
+  api-docs:
+    enabled: true 
+    path: /user/v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /user/swagger-ui.html
+         
+openApi:
+    apiName: Authentication Service API
+    serverUrl: http://localhost:8083
