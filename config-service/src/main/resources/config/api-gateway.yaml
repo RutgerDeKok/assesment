@@ -19,6 +19,14 @@ management:
 spring:
    cloud:
       gateway:
+         globalcors:
+            add-to-simple-url-handler-mapping: true
+            cors-configurations:
+               '[/**]':
+                  allowedOrigins: '*'
+                  allowedMethods:
+                  - GET
+                  - POST
          routes:
          -  id: customer-service
             uri: lb://customer-service
@@ -32,3 +40,14 @@ spring:
             uri: lb://authentication-service
             predicates:
             - Path=/user/**
+
+springdoc:
+   api-docs:
+      enabled: true
+      path: /v3/api-docs
+   swagger-ui:
+      enabled: true
+      config-url: /v3/api-docs/swagger-config
+      urls:
+      -  name: gateway-service
+         url: /v3/api-docs

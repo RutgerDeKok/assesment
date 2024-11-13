@@ -1,23 +1,19 @@
-package dev.rutgerk.customer_service.model;
+package dev.rutgerk.customer_service.dto;
 
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Builder
-@Entity
-@Table(name = "customers")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
+public class CustomerDto {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
