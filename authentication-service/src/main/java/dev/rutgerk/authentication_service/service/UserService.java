@@ -75,7 +75,7 @@ public class UserService {
    * This method creates a new User by passing a userCreationDto. If there is an existing user with
    * the same login an AppException is thrown with BAD_REQUEST status.
    * 
-   * When the user is created and persisted succesfully a UserDto is returned
+   * When the user is created and persisted successfully a UserDto is returned
    * 
    * @param userCreationDto
    * @return UserDto
@@ -133,6 +133,5 @@ public class UserService {
         .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 30L)).and()
         .signWith(getSigningKey()).compact();
   }
-
 
 }

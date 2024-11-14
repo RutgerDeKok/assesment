@@ -1,14 +1,13 @@
 package dev.rutgerk.authentication_service.dto;
 
 import java.util.Set;
-import dev.rutgerk.authentication_service.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Builder
 @Data
 public class UserCreationDto {
@@ -17,6 +16,7 @@ public class UserCreationDto {
   private String lastName;
   private String login;
   private char[] password;
-  private Set<Role> roles;
+
+  private Set<RoleDto> roles;
 
 }

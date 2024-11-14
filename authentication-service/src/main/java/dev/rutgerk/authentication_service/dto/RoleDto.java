@@ -1,22 +1,20 @@
 package dev.rutgerk.authentication_service.dto;
 
-import java.util.Set;
+import dev.rutgerk.authentication_service.security.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+
+
 @Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class RoleDto {
 
-  private long id;
-  private String role;
-  private String login;
-  private String token;
-
-  private Set<RoleDto> roles;
+  private RoleEnum name;
+  private String description;
 
 }
