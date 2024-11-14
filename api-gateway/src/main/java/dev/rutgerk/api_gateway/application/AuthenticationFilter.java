@@ -1,5 +1,7 @@
 package dev.rutgerk.api_gateway.application;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -7,6 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import dev.rutgerk.api_gateway.client.AuthenticationClient;
@@ -43,7 +49,22 @@ public class AuthenticationFilter implements GlobalFilter {
         return onError(exchange, HttpStatus.UNAUTHORIZED);
       }
 
+      // Extract UserDto from the response
+      UserDto userDto = response.getBody();
+
+      // Create a list of granted authorities (roles)
+      List<GrantedAuthority> authorities = userDto.getRoles().stream()
+          .map(role -> new SimpleGrantedAuthority(role.getName().toString()))
+          .collect(Collectors.toList());
+
+      // Create a custom Authentication object (or use UsernamePasswordAuthenticationToken)
+      UsernamePasswordAuthenticationToken authentication =
+          new UsernamePasswordAuthenticationToken(userDto.getLogin(), null, authorities);
+
+      // Set authentication in the SecurityContext
+      SecurityContextHolder.getContext().setAuthentication(authentication);
     }
+
     return chain.filter(exchange);
   }
 
